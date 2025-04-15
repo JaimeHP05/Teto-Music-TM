@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function App() {
   // Cambia BACKEND_URL por la URL pública de tu backend desplegado (por ejemplo, en Render o Fly.io)
-  const BACKEND_URL = "https://tu-backend-app.example.com";
+  const BACKEND_URL = "https://teto-music-tm.onrender.com";
   
   const [downloadUrl, setDownloadUrl] = useState('');
   const [serverFiles, setServerFiles] = useState([]); // Archivos disponibles en el backend
