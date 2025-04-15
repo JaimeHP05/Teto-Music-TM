@@ -74,18 +74,17 @@ export default function App() {
   };
 
   // Envía la URL al backend para iniciar la descarga
-  const triggerDownload = async () => {
-    try {
-      setMessage("Iniciando descarga en el servidor...");
-      await axios.post(`${BACKEND_URL}/download`, { url: downloadUrl });
-      setMessage("Descarga iniciada en el servidor. Actualiza la lista en unos segundos.");
-      // Espera unos segundos y actualiza la lista de archivos disponibles en el servidor
-      setTimeout(fetchServerFiles, 5000);
-    } catch (error) {
-      setMessage("Error al iniciar la descarga en el servidor.");
-      console.log(error);
-    }
-  };
+const triggerDownload = async () => {
+  try {
+    setMessage("Iniciando descarga en el servidor...");
+    const response = await axios.post(`${BACKEND_URL}/download`, { url: downloadUrl });
+    setMessage(response.data.message || "Descarga iniciada en el servidor.");
+    setTimeout(fetchServerFiles, 5000);
+  } catch (error) {
+    setMessage("Error al iniciar la descarga en el servidor.");
+    console.error("Error:", error.response?.data || error.message);
+  }
+};
 
   // Reproduce el archivo local seleccionado
   const playAudio = async (index) => {
