@@ -71,3 +71,7 @@ async def play_file(filename: str):
         return FileResponse(file_path, media_type="audio/mpeg", filename=filename)
     else:
         raise HTTPException(status_code=404, detail="Archivo no encontrado")
+
+@app.get("/")
+async def root():
+    return {"message": "Bienvenido a Teto Music TM API"}
